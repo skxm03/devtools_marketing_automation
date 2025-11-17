@@ -1,5 +1,6 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import './App.css';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import "./App.css";
+import Navbar from "./components/layout/Navbar";
 
 // Import your pages here
 // import Home from "./pages/Home.jsx";
@@ -8,20 +9,20 @@ import './App.css';
 // import RootLayout from "./pages/Layout.jsx";
 
 function App() {
-	const router = createBrowserRouter([
-		{
-			path: '/',
-			element: <div>Root Layout</div>,
-			children: [
-				{ index: true, element: <div>Home Page</div> },
-				// Add more routes here
-				// { path: "signup", element: <Signup /> },
-				// { path: "login", element: <Login /> },
-			],
-		},
-	]);
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Navbar></Navbar>,
+      children: [
+        { index: true, element: <div>Home Page</div> },
+        // Add more routes here
+        // { path: "signup", element: <Signup /> },
+        // { path: "login", element: <Login /> },
+      ],
+    },
+  ]);
 
-	return <RouterProvider router={router} />;
+  return <RouterProvider router={router} />;
 }
 
 export default App;
