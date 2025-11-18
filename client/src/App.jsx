@@ -1,6 +1,9 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import "./App.css";
 import Navbar from "./components/layout/Navbar";
+import RecentActivity from "./components/dashboard/RecentActivity";
+import StatsCard from "./components/dashboard/StatsCard";
+import UpcomingPosts from "./components/dashboard/UpcomingPosts";
 
 // Import your pages here
 // import Home from "./pages/Home.jsx";
@@ -12,9 +15,18 @@ function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Navbar></Navbar>,
+      element: (
+        <>
+          <Navbar></Navbar>
+          <div className="p-6 space-y-6">
+            <StatsCard />
+            <RecentActivity />
+            <UpcomingPosts />
+          </div>
+        </>
+      ),
       children: [
-        { index: true, element: <div>Home Page</div> },
+        { index: true, element: <div></div> },
         // Add more routes here
         // { path: "signup", element: <Signup /> },
         // { path: "login", element: <Login /> },
