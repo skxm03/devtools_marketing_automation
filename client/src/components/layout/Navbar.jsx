@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import {
   Menu,
   X,
@@ -14,17 +15,17 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const sections = [
-    { name: "Dashboard", icon: LayoutDashboard },
-    { name: "Create Post", icon: PenSquare },
-    { name: "Posts List", icon: FileText },
-    { name: "Templates", icon: Layout },
+    { name: "Dashboard", icon: LayoutDashboard, path: "/" },
+    { name: "Create Post", icon: PenSquare, path: "/create" },
+    { name: "Posts List", icon: FileText, path: "/posts" },
+    { name: "Templates", icon: Layout, path: "/templates" },
   ];
 
   return (
     <>
       <nav className="bg-white border-b border-blue-100 shadow-sm sticky top-0 z-50">
         <div className="sm:px-6 lg:px-8">
-          <div className="flex items-center  justify-start h-16">
+          <div className="flex items-center justify-start h-16">
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center gap-10 rounded-xl p-1.5">
               {sections.map((section) => {
@@ -32,18 +33,19 @@ export default function Navbar() {
                 const isActive = activeSection === section.name;
 
                 return (
-                  <button
+                  <Link
                     key={section.name}
+                    to={section.path}
                     onClick={() => setActiveSection(section.name)}
                     className={`px-5 py-2.5 rounded-lg transition-all flex items-center gap-2 ${
                       isActive
-                        ? "bg-linear-to-r from-blue-500 to-blue-600 text-white shadow-md"
+                        ? "bg-blue-600 text-white shadow-md"
                         : "text-gray-600 hover:text-blue-600 hover:bg-blue-100"
                     }`}
                   >
                     <Icon size={18} />
                     {section.name}
-                  </button>
+                  </Link>
                 );
               })}
             </div>
@@ -68,21 +70,22 @@ export default function Navbar() {
                   const isActive = activeSection === section.name;
 
                   return (
-                    <button
+                    <Link
                       key={section.name}
+                      to={section.path}
                       onClick={() => {
                         setActiveSection(section.name);
                         setMobileMenuOpen(false);
                       }}
                       className={`px-4 py-3 rounded-xl text-left flex items-center gap-2 transition-all ${
                         isActive
-                          ? "bg-linear-to-r from-blue-500 to-blue-600 text-white shadow-md"
+                          ? "bg-blue-600 text-white shadow-md"
                           : "text-gray-700 hover:bg-blue-50 hover:text-blue-600 border border-blue-100"
                       }`}
                     >
                       <Icon size={18} />
                       {section.name}
-                    </button>
+                    </Link>
                   );
                 })}
               </div>
@@ -90,6 +93,7 @@ export default function Navbar() {
           )}
         </div>
       </nav>
+
       <Outlet />
     </>
   );

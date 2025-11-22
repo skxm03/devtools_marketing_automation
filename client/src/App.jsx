@@ -4,6 +4,8 @@ import Navbar from "./components/layout/Navbar";
 import RecentActivity from "./components/dashboard/RecentActivity";
 import StatsCard from "./components/dashboard/StatsCard";
 import UpcomingPosts from "./components/dashboard/UpcomingPosts";
+import TemplateCard from "./components/templates/TemplateCard";
+import TemplateSelector from "./components/templates/TemplateSelector";
 
 // Import your pages here
 // import Home from "./pages/Home.jsx";
@@ -31,6 +33,17 @@ function App() {
         // { path: "signup", element: <Signup /> },
         // { path: "login", element: <Login /> },
       ],
+    },
+    {
+      path: "/templates",
+      element: (
+        <>
+          <Navbar />
+          <div className="p-6 space-y-6">
+            <TemplateCard />
+          </div>
+        </>
+      ),
     },
   ]);
 
